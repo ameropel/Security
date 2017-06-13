@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Security" customModuleProvider="target">
+            <connections>
+                <outlet property="addButton" destination="YhS-TX-FYi" id="DBa-Pg-wI1"/>
+                <outlet property="tableContainer" destination="uhH-PY-nvU" id="duC-wZ-FTe"/>
+                <outlet property="topDividerView" destination="rWa-6Q-8H0" id="9nL-CN-Wts"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWa-6Q-8H0" userLabel="Top Divider">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="cyg-ag-IE4"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhH-PY-nvU" userLabel="Table Container">
+                    <rect key="frame" x="0.0" y="1" width="375" height="621"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YhS-TX-FYi">
+                    <rect key="frame" x="0.0" y="622" width="375" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Qvc-ur-0rN"/>
+                    </constraints>
+                    <state key="normal" title="Add"/>
+                    <connections>
+                        <action selector="didPressAddButton:" destination="-1" eventType="touchUpInside" id="Rt2-rn-dhj"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rWa-6Q-8H0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MPJ-0I-v6J"/>
+                <constraint firstAttribute="trailing" secondItem="YhS-TX-FYi" secondAttribute="trailing" id="NKE-Cp-9Cu"/>
+                <constraint firstItem="YhS-TX-FYi" firstAttribute="top" secondItem="uhH-PY-nvU" secondAttribute="bottom" id="Ycr-pZ-ten"/>
+                <constraint firstAttribute="trailing" secondItem="rWa-6Q-8H0" secondAttribute="trailing" id="d6N-kY-r2y"/>
+                <constraint firstItem="rWa-6Q-8H0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fDa-IH-Skq"/>
+                <constraint firstItem="YhS-TX-FYi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gTt-uG-rhg"/>
+                <constraint firstItem="uhH-PY-nvU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kRD-am-n2e"/>
+                <constraint firstAttribute="trailing" secondItem="uhH-PY-nvU" secondAttribute="trailing" id="mLi-zK-bfc"/>
+                <constraint firstAttribute="bottom" secondItem="YhS-TX-FYi" secondAttribute="bottom" id="nkP-VR-28q"/>
+                <constraint firstItem="uhH-PY-nvU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="1" id="u6z-OC-SNo"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+</document>

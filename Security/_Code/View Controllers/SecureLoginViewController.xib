@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SecureLoginViewController" customModule="Security" customModuleProvider="target">
+            <connections>
+                <outlet property="statusLabel" destination="U0f-19-GS7" id="ios-Me-8bT"/>
+                <outlet property="touchIDContainer" destination="GJL-xn-QFz" id="gm5-bG-t5m"/>
+                <outlet property="unlockButton" destination="NzU-ox-DSZ" id="L4x-Xo-0DM"/>
+                <outlet property="unlockLabel" destination="YNc-vW-O8o" id="DWl-U3-MlT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJL-xn-QFz" userLabel="Touch ID Container">
+                    <rect key="frame" x="0.0" y="205" width="375" height="258"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzU-ox-DSZ" userLabel="Login">
+                            <rect key="frame" x="124" y="48" width="127" height="140"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="127" id="lbX-g6-sJj"/>
+                                <constraint firstAttribute="height" constant="140" id="yms-1V-1ci"/>
+                            </constraints>
+                            <connections>
+                                <action selector="didPressTouchIDLoginButton:" destination="-1" eventType="touchUpInside" id="MXE-4H-AFN"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touch_id" translatesAutoresizingMaskIntoConstraints="NO" id="h2e-V5-5Eu">
+                            <rect key="frame" x="136" y="48" width="103" height="103"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="103" id="kig-Kg-gcf"/>
+                                <constraint firstAttribute="height" constant="103" id="kyd-K2-KfA"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNc-vW-O8o">
+                            <rect key="frame" x="124" y="163" width="127" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="gML-Pr-S3f"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-19-GS7" userLabel="Status Label" customClass="StatusLabelView" customModule="Security" customModuleProvider="target">
+                            <rect key="frame" x="16" y="198" width="343" height="28"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="un2-z4-472"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="NzU-ox-DSZ" firstAttribute="centerX" secondItem="GJL-xn-QFz" secondAttribute="centerX" id="2Xt-Iv-qFi"/>
+                        <constraint firstItem="U0f-19-GS7" firstAttribute="top" secondItem="NzU-ox-DSZ" secondAttribute="bottom" constant="10" id="3Wl-M2-gak"/>
+                        <constraint firstItem="YNc-vW-O8o" firstAttribute="trailing" secondItem="NzU-ox-DSZ" secondAttribute="trailing" id="CDd-N5-8S6"/>
+                        <constraint firstItem="h2e-V5-5Eu" firstAttribute="centerX" secondItem="NzU-ox-DSZ" secondAttribute="centerX" id="UVY-cg-bEo"/>
+                        <constraint firstAttribute="trailing" secondItem="U0f-19-GS7" secondAttribute="trailing" constant="16" id="XIO-d8-A2h"/>
+                        <constraint firstItem="U0f-19-GS7" firstAttribute="leading" secondItem="GJL-xn-QFz" secondAttribute="leading" constant="16" id="Z85-ZD-dze"/>
+                        <constraint firstItem="YNc-vW-O8o" firstAttribute="leading" secondItem="NzU-ox-DSZ" secondAttribute="leading" id="cBt-D4-oyF"/>
+                        <constraint firstItem="NzU-ox-DSZ" firstAttribute="top" secondItem="GJL-xn-QFz" secondAttribute="top" constant="48" id="eMP-Sc-eGo"/>
+                        <constraint firstAttribute="height" constant="258" id="ez4-J4-vOe"/>
+                        <constraint firstItem="h2e-V5-5Eu" firstAttribute="top" secondItem="NzU-ox-DSZ" secondAttribute="top" id="fnD-ud-ZwR"/>
+                        <constraint firstItem="YNc-vW-O8o" firstAttribute="bottom" secondItem="NzU-ox-DSZ" secondAttribute="bottom" constant="-4" id="taM-QH-eRW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="GJL-xn-QFz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5sE-7X-o8c"/>
+                <constraint firstItem="GJL-xn-QFz" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Yfj-au-J9W"/>
+                <constraint firstAttribute="trailing" secondItem="GJL-xn-QFz" secondAttribute="trailing" id="dO7-9p-Nzh"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="touch_id" width="170" height="170"/>
+    </resources>
+</document>
