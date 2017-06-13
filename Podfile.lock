@@ -1,0 +1,26 @@
+PODS:
+  - Locksmith (3.0.0)
+  - MarqueeLabel/Swift (3.0.5)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SwipeCellKit (1.8.0)
+  - Zip (0.7.0)
+
+DEPENDENCIES:
+  - Locksmith
+  - MarqueeLabel/Swift
+  - SDWebImage
+  - SwipeCellKit
+  - Zip
+
+SPEC CHECKSUMS:
+  Locksmith: 310b4cc5031af5728bf4db5d4de547a5100c6a3b
+  MarqueeLabel: 8a25b2cf02cf52165022f01369e63536c58fcc00
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SwipeCellKit: 01a58bf7e63d5df09aedd161828833944c4c333c
+  Zip: e34513299ac38c0686d5b24504da7ce343799ab9
+
+PODFILE CHECKSUM: 0f051c776dc3401703f1a94a0015a950770c29a3
+
+COCOAPODS: 1.2.1
