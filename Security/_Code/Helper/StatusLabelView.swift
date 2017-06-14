@@ -10,9 +10,18 @@ import UIKit
 
 @IBDesignable
 class StatusLabelView: UIView {
-
+    
     private let displayTime: CGFloat = 2.0
     private var label: UILabel!
+    
+    var textAlignment: NSTextAlignment = .center {
+        didSet {
+            if label != nil {
+                label.textAlignment = self.textAlignment
+            }
+        }
+    }
+
     
     // MARK: - Initializer
     
@@ -46,7 +55,7 @@ class StatusLabelView: UIView {
         
         // Create Label
         self.label = UILabel(frame: self.bounds)
-        self.label.textAlignment = .center
+        self.label.textAlignment = self.textAlignment
         self.label.textColor = UIColor.tomato.withAlphaComponent(0.9)
         self.label.font = UIFont.verdana(size: 10)
         self.label.text = "Error Label Text"

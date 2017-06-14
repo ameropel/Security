@@ -2,7 +2,6 @@
 platform :ios, '9.0'
 
 target 'Security' do
-    pod 'SwipeCellKit'
     pod 'Locksmith'
     pod 'MarqueeLabel/Swift'  # Auto-scrolling labels
     pod 'SDWebImage'

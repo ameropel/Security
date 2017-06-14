@@ -15,17 +15,10 @@ protocol ImportDelegate : class {
 
 class ImportViewController: UIViewController {
     
-    private enum SegmentImportType : Int {
-        case addData = 0
-        case importData = 1
-    }
-
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var segmentController: UISegmentedControl!
     @IBOutlet weak var statusLabel: StatusLabelView!
     @IBOutlet weak var dataImportTextView: UITextView!
-    private var segmentType: SegmentImportType = .importData
     
     weak var delegate: ImportDelegate?
     
@@ -67,12 +60,15 @@ class ImportViewController: UIViewController {
         self.dataImportTextView.becomeFirstResponder()
         self.dataImportTextView.delegate = self
         self.dataImportTextView.addClearButtonOnKeyboard(target: self, selector: #selector(self.didPressTextViewClearButton))
+        
+        // Status Label
+        self.statusLabel.textAlignment = .left
     }
     
     
     // MARK: - Data Importing
     
-    private func addData() {
+    private func importData() {
         
         self.isDataValid { (data) in
             
@@ -83,18 +79,7 @@ class ImportViewController: UIViewController {
             }, actionCancel:{ })
         }
     }
-    
-    private func importData() {
-        
-        self.isDataValid { (data) in
-        
-            self.displayOkCancelAlert(title: "Import Data", message: "Are you sure you want to import new data? The pre-existing data will be overwritten.", actionOk: {
-                    self.statusLabel.showSuccessWithMessage(message: "Data imported successfully")
-                    self.delegate?.importNewSecurityDetail(security: data)
-            }, actionCancel:{ })
-        }
-    }
-    
+
     
     // MARK: - Data Validation 
     
@@ -115,14 +100,7 @@ class ImportViewController: UIViewController {
     }
     
     @IBAction func didPressSaveButton(_ sender: Any) {
-        
-        let segmentValue:SegmentImportType = ImportViewController.SegmentImportType(rawValue: self.segmentController.selectedSegmentIndex)!
-        
-        if segmentValue == .addData {
-            self.addData()
-        } else if segmentValue == .importData {
-            self.importData()
-        }
+        self.importData()
     }
     
     @IBAction func didPressInfoButton(_ sender: Any) {

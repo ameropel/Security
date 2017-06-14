@@ -67,8 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func displayLogin() {
         
-        return
-        
         // If login screen is already presented dont do anything
         guard !(self.navController.visibleViewController is SecureLoginViewController) else {
             return

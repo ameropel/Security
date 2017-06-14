@@ -28,7 +28,7 @@ class SecureData: NSObject {
         self.username = username.isEmpty ? "" : username
         self.password = password.isEmpty ? "" : password
         self.otherText = otherText.isEmpty ? "" : otherText
-        self.image_url = imageUrl.isEmpty ? "" : otherText
+        self.image_url = imageUrl.isEmpty ? "" : imageUrl
     }
     
     init(withJSON json: JSON) {

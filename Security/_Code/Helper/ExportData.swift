@@ -10,42 +10,42 @@ import UIKit
 import MessageUI
 import Zip
 
+
+
 class ExportData : NSObject {
     
-    private var displayView: UIViewController!
-    private var zipFileURL: URL!
+    fileprivate var displayView: UIViewController!
+    fileprivate var zipFileURL: URL!
     
     func exportData(from view: UIViewController) {
     
         self.displayView = view
-        
-        /*
+
+        // Check if can even email first
         guard MFMailComposeViewController.canSendMail() else {
             
             self.displayView.displaySimpleAlert(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
             return
         }
         
+        self.displayPasswordAlert { (password) in
         
-        let fileData: Data = Data()
-        let mailComposeViewController =  self.configuredMailComposeViewController(withAttatchment: fileData)
-        self.displayView.present(mailComposeViewController, animated: true, completion: nil)
-         */
-        //self.displayPasswordAlert { (password) in
-        
-        
-            self.zipData(data: self.dataToImport(), withPassword: "password", onSuccess: { (url) in
+            self.zipData(data: self.dataToImport(), withPassword: password, onSuccess: { (url) in
                 
                 self.zipFileURL = url
                 
-                let fileData = NSData(contentsOf: url)
-                //let mailComposeViewController =  self.configuredMailComposeViewController(withAttatchment: fileData! as Data)
-                //self.displayView.present(mailComposeViewController, animated: true, completion: nil)
+                guard let fileData: Data = FileManager.default.contents(atPath: self.zipFileURL.path) else {
+                    self.remove(filePath: self.zipFileURL)
+                    return
+                }
+                
+                let mailComposeViewController =  self.configuredMailComposeViewController(withAttatchment: fileData)
+                self.displayView.present(mailComposeViewController, animated: true, completion: nil)
                 
             }, onError: { (error) in
                 self.displayView.displaySimpleAlert(title: "Export Error", message: error)
             })
-        //}
+        }
     }
     
     
@@ -98,28 +98,6 @@ class ExportData : NSObject {
             }
         }
         secureDataString.append("]\n}")
-        
-        
-        /*
-        var secureDataString: String = "{data : ["
-        for data in DataManager.shared.secureDataArray {
-            
-            index += 1
-            
-            secureDataString.append(String(format: "          \"accountName\" : \"%@\"\n", data.accountName))
-            secureDataString.append(String(format: "          \"username\" : \"%@\"\n", data.username))
-            secureDataString.append(String(format: "          \"password\" : \"%@\"\n", data.password))
-            secureDataString.append(String(format: "          \"image_url\" : \"%@\"\n", data.image_url))
-            secureDataString.append(String(format: "          \"otherText\" : \"%@\"\n", data.otherText))
-            secureDataString.append("    }")
-            
-            if index < count {
-                secureDataString.append(",\n")
-            }
-        }
-        secureDataString.append("]\n}")
-         */
-        
         return secureDataString
     }
 
@@ -132,8 +110,8 @@ class ExportData : NSObject {
         mailComposerVC.mailComposeDelegate = self
         
         mailComposerVC.setSubject("Secure Data")
-        mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
-        //mailComposerVC.addAttachmentData(attachment, mimeType: "application/zip", fileName: "SecureData.zip")
+        mailComposerVC.setMessageBody("Password secure data attached.", isHTML: false)
+        mailComposerVC.addAttachmentData(attachment, mimeType: "application/zip", fileName: "SecureData.zip")
         
         return mailComposerVC
     }
@@ -144,7 +122,7 @@ class ExportData : NSObject {
 
 fileprivate extension ExportData {
     
-     func zipData(data: String, withPassword password: String, onSuccess: @escaping (URL) -> Void, onError: (String) -> Void) {
+     func zipData(data: String, withPassword password: String, onSuccess: @escaping (URL!) -> Void, onError: (String!) -> Void) {
         
         guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             onError("Couldn't create directory")
@@ -158,16 +136,6 @@ fileprivate extension ExportData {
             // File written
             try data.write(to: filePath, atomically: false, encoding: String.Encoding.utf8)
             
-            /*
-             case NoCompression
-             case BestSpeed
-             case DefaultCompression
-             case BestCompression
-             */
-            
-            
-            
-            
             //  Zip File
             let zipFilePath = dir.appendingPathComponent("archive.zip")
             try Zip.zipFiles(paths: [filePath], zipFilePath: zipFilePath, password: password, compression: .BestCompression, progress: { (progress) -> () in
@@ -175,7 +143,7 @@ fileprivate extension ExportData {
                 
             }, onSucess: {
                 // Remove original file created
-                remove(filePath: filePath)
+                self.remove(filePath: filePath)
                 
                 // Send zip on completion
                 onSuccess(zipFilePath)
@@ -202,9 +170,21 @@ extension ExportData : MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
+        switch result {
+        case .cancelled:
+            print("Mail cancelled")
+        case .saved:
+            print("Mail saved")
+        case .sent:
+            print("Mail sent")
+        case .failed:
+            print("Mail sent failure: %@", error.debugDescription)
+        }
         
+        // Remove original file created
+        self.remove(filePath: self.zipFileURL)
         
-        
+        self.displayView.dismiss(animated: true, completion: nil)
     }
 }
 

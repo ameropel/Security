@@ -19,6 +19,11 @@ class MainViewController: UIViewController {
         controller.delegate = self
         return controller
     }()
+    
+    lazy fileprivate(set) var exportData: ExportData! = {
+        var exporter = ExportData()
+        return exporter
+    }()
 
     
     // MARK: - Lifecycle
@@ -89,9 +94,9 @@ class MainViewController: UIViewController {
             self.displaySimpleAlert(title: "Export", message: "There is no data to export")
             return
         }
-        
-        let exportData = ExportData()
-        exportData.exportData(from: self)
+
+        self.exportData = ExportData()
+        self.exportData.exportData(from: self)
     }
     
     @IBAction func didPressAddButton(_ sender: Any) {

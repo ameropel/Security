@@ -14,7 +14,6 @@
                 <outlet property="closeButton" destination="QVq-R0-Tvq" id="uYn-MI-2Oz"/>
                 <outlet property="dataImportTextView" destination="gLi-aY-Y9c" id="oss-BR-SI1"/>
                 <outlet property="saveButton" destination="auU-OM-5Fa" id="VP7-1m-bwF"/>
-                <outlet property="segmentController" destination="IDG-xz-xxT" id="RZa-YE-FHd"/>
                 <outlet property="statusLabel" destination="9cU-qv-twB" id="cR5-2m-7sR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -46,36 +45,24 @@
                         <action selector="didPressSaveButton:" destination="-1" eventType="touchUpInside" id="QjP-Da-9rH"/>
                     </connections>
                 </button>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IDG-xz-xxT">
-                    <rect key="frame" x="100" y="113" width="174" height="29"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="174" id="CgK-Fz-bZp"/>
-                        <constraint firstAttribute="height" constant="28" id="sIz-vK-Dl7"/>
-                    </constraints>
-                    <segments>
-                        <segment title="Add"/>
-                        <segment title="Import"/>
-                    </segments>
-                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </segmentedControl>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLi-aY-Y9c">
-                    <rect key="frame" x="16" y="149" width="343" height="253"/>
+                    <rect key="frame" x="16" y="129" width="343" height="273"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="253" id="a3p-OS-Pvj"/>
+                        <constraint firstAttribute="height" constant="273" id="a3p-OS-Pvj"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
                 </textView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cU-qv-twB" userLabel="Status Label" customClass="StatusLabelView" customModule="Security" customModuleProvider="target">
-                    <rect key="frame" x="16" y="76" width="343" height="30"/>
+                    <rect key="frame" x="16" y="92" width="303" height="29"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Yda-5f-I4m"/>
+                        <constraint firstAttribute="height" constant="29" id="Yda-5f-I4m"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2i-49-Ubq" userLabel="Info Button">
-                    <rect key="frame" x="329" y="112" width="30" height="30"/>
+                    <rect key="frame" x="329" y="92" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="3Yk-rX-jup"/>
                         <constraint firstAttribute="width" constant="30" id="tfA-Rm-WBN"/>
@@ -93,18 +80,16 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="gLi-aY-Y9c" secondAttribute="trailing" constant="16" id="18n-YH-MSE"/>
                 <constraint firstItem="QVq-R0-Tvq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="4ty-d1-WXo"/>
-                <constraint firstItem="L2i-49-Ubq" firstAttribute="top" secondItem="9cU-qv-twB" secondAttribute="bottom" constant="6" id="6Kr-0p-nOG"/>
+                <constraint firstItem="L2i-49-Ubq" firstAttribute="top" secondItem="9cU-qv-twB" secondAttribute="bottom" constant="-29" id="6Kr-0p-nOG"/>
                 <constraint firstItem="gLi-aY-Y9c" firstAttribute="top" secondItem="L2i-49-Ubq" secondAttribute="bottom" constant="7" id="C8D-iG-rC8"/>
                 <constraint firstItem="auU-OM-5Fa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="FpH-NJ-SON"/>
                 <constraint firstAttribute="trailing" secondItem="auU-OM-5Fa" secondAttribute="trailing" constant="16" id="NG1-un-dHt"/>
                 <constraint firstAttribute="trailing" secondItem="L2i-49-Ubq" secondAttribute="trailing" constant="16" id="XOi-Za-6Bg"/>
                 <constraint firstItem="QVq-R0-Tvq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="bGV-fE-Pbe"/>
-                <constraint firstItem="IDG-xz-xxT" firstAttribute="top" secondItem="9cU-qv-twB" secondAttribute="bottom" constant="7" id="c67-mS-MDm"/>
                 <constraint firstItem="9cU-qv-twB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="edm-3V-TGe"/>
-                <constraint firstItem="IDG-xz-xxT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="n2x-hh-jRI"/>
                 <constraint firstItem="gLi-aY-Y9c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="tFZ-Kg-leK"/>
-                <constraint firstAttribute="trailing" secondItem="9cU-qv-twB" secondAttribute="trailing" constant="16" id="vAh-mk-E9U"/>
-                <constraint firstItem="9cU-qv-twB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="76" id="x6Q-jM-lZl"/>
+                <constraint firstAttribute="trailing" secondItem="9cU-qv-twB" secondAttribute="trailing" constant="56" id="vAh-mk-E9U"/>
+                <constraint firstItem="9cU-qv-twB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="92" id="x6Q-jM-lZl"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>

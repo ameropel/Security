@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import SwipeCellKit
 import MarqueeLabel
 
-class SecurityBasicCell: SwipeTableViewCell {
+class SecurityBasicCell: UITableViewCell {
 
     // MARK: - Properties
     
@@ -97,8 +96,10 @@ class SecurityBasicCell: SwipeTableViewCell {
             self.accountImage.sd_setImage(with: url) { (image, error, cache, url) in
                 if error != nil {
                     self.accountImage.image = nil
+                    self.accountImage.backgroundColor = UIColor.secondaryLightColor
                 } else {
                     self.accountImage.image = image
+                    self.accountImage.backgroundColor = UIColor.clear
                 }
             }
         }

@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwipeCellKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Zip.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,7 +32,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>23F2CF92480E8D91F31F26775381FDED</key>
+		<key>0AE9D3B83EDB740A1CE307ACCE53A076</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,22 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77679256683255F265622B799D2EBC7F</key>
+		<key>44A5CA13F899210C67E15C5BC468469C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA7D6E8A15C389853458562646077A1F</key>
+		<key>67E0D85E9F1CA893B24511578BB82319</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C7F727D48928BF47D913AFC48BB6A978</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DEBE6743D3AA6C9DBD879740CE6156F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

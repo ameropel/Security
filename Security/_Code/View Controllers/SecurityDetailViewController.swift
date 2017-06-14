@@ -254,6 +254,12 @@ extension SecurityDetailViewController : UITextFieldDelegate {
         
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.imageTextField {
+            self.loadImage()
+        }
+    }
 }
 
 fileprivate extension UILabel {

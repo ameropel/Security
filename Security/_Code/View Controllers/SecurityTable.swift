@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwipeCellKit
 
 protocol SecurityTableDelegate : class {
     func editSecureData(data: SecureData)
@@ -36,13 +35,13 @@ class SecurityTable: UITableViewController {
         
         // Configure Cells
         self.tableView.register(UINib(nibName: "SecurityBasicCell", bundle: nil), forCellReuseIdentifier: "SecurityBasicCell")
-        
     }
     
     
     // MARK: - Helpers
     
     func refreshTable(withData data: [SecureData]) {
+        
         self.tableData.removeAll()
         self.tableData.append(contentsOf: data)
         self.sortDataAlphabetically()
@@ -57,10 +56,7 @@ class SecurityTable: UITableViewController {
     func addNewData(data: [SecureData]) {
         
         self.tableData.append(contentsOf: data)
-        self.sortDataAlphabetically()
-        self.tableView.reloadData()
-        
-        DataManager.shared.secureDataArray = self.tableData
+        self.refreshTable(withData: self.tableData)
     }
     
     func updateData(data: SecureData) {
@@ -101,59 +97,31 @@ class SecurityTable: UITableViewController {
         let secureData = self.tableData[(indexPath as NSIndexPath).row]
         cell.setCell(withData: secureData)
         cell.selectionStyle = .none
-        cell.delegate = self
         
         return cell
     }
-}
-
-
-// MARK: - EXTENSIONS
-
-extension SecurityTable : SwipeTableViewCellDelegate {
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         
-        if orientation == .right {
-            
-            let deleteAction = SwipeAction(style: .default, title: "Delete") { action, indexPath in
-                self.tableData.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-                DataManager.shared.secureDataArray = self.tableData
-            }
-            let image = UIImage(named: "remove-icon")?.scaleToSize(size: CGSize(width: 30, height: 30))
-            deleteAction.image = image
-            deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.2352941176, blue: 0.1882352941, alpha: 1)
-            return [deleteAction]
-            
-        } else {
-            
-            let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
-                self.delegate?.editSecureData(data: self.tableData[(indexPath as NSIndexPath).row])
-            }
-            let image = UIImage(named: "editing-icon")?.scaleToSize(size: CGSize(width: 30, height: 30))
-            editAction.image = image
-            editAction.backgroundColor = UIColor.mainColor
-            return [editAction]
+        let edit = UITableViewRowAction(style: .normal, title: "  Edit  ") { action, index in
+            self.delegate?.editSecureData(data: self.tableData[(editActionsForRowAt as NSIndexPath).row])
         }
+        edit.backgroundColor = UIColor.mainColor
+        
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            
+            self.displayOkCancelAlert(title: "Wait", message: "Are you sure you want to delete this password?", actionOk: { 
+                self.tableData.remove(at: editActionsForRowAt.row)
+                self.tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
+                DataManager.shared.secureDataArray = self.tableData
+            }, actionCancel: {})
+        }
+        delete.backgroundColor = UIColor.tomato
+        
+        return [delete, edit]
     }
     
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
-        
-        var options = SwipeTableOptions()
-        options.expansionStyle = .selection
-        options.transitionStyle = .reveal
-        
-        switch orientation {
-        case .left:
-            options.buttonPadding = 15
-            options.backgroundColor = UIColor.mainColor
-            
-        case .right:
-            options.buttonPadding = 15
-            options.backgroundColor = #colorLiteral(red: 1, green: 0.2352941176, blue: 0.1882352941, alpha: 1)
-        }
-        
-        return options
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 }
